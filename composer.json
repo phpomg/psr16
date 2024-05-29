@@ -1,0 +1,14 @@
+{
+    "name": "phpomg/psr16",
+    "description": "psr16的基本实现",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "psr/simple-cache": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPOMG\\Psr16\\": "src/"
+        }
+    }
+}
