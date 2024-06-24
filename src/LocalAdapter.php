@@ -4,26 +4,17 @@ declare(strict_types=1);
 
 namespace PHPOMG\Psr16;
 
-use Composer\InstalledVersions;
 use DateInterval;
 use Exception;
 use Psr\SimpleCache\CacheInterface;
-use ReflectionClass;
 use Throwable;
 
 class LocalAdapter implements CacheInterface
 {
     private $cache_dir;
 
-    public function __construct(string $cache_dir = null)
+    public function __construct(string $cache_dir)
     {
-        if (is_null($cache_dir)) {
-            if (class_exists(InstalledVersions::class)) {
-                $cache_dir = dirname(dirname(dirname((new ReflectionClass(InstalledVersions::class))->getFileName()))) . '/runtime/cache/';
-            } else {
-                $cache_dir = __DIR__ . '/runtime/cache/';
-            }
-        }
         if (!is_dir($cache_dir)) {
             if (false === mkdir($cache_dir, 0755, true)) {
                 throw new Exception('mkdir [' . $cache_dir . '] failure!');
